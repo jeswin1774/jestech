@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JES — jes tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --void:#05050a;
+  --deep:#0b0c14;
+  --surface:#10121e;
+  --card:#151825;
+  --gold:#d4a942;
+  --gold2:#f0c96a;
+  --gold3:#8a6520;
+  --ivory:#f7f2e8;
+  --muted:#bfc6cf;
+  --blue:#1a3a6b;
+  --border:rgba(212,169,66,0.18);
+  --border2:rgba(212,169,66,0.08);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Crimson Pro',serif;
+  background:var(--void);
+  color:var(--ivory);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+.cursor{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;}
+.c-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);position:absolute;}
+.c-ring{width:32px;height:32px;border:1px solid var(--gold);border-radius:50%;transform:translate(-50%,-50%);transition:all 0.15s ease;opacity:0.6;position:absolute;}
+@media(max-width:900px){body{cursor:auto;}.cursor{display:none;}}
+
+/* NOISE */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
+/* ══════════════════════════════════════
+   BRAND HEADER — JES COMPANY
+══════════════════════════════════════ */
+.brand-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(5,5,10,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.brand-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.65rem 4rem;
+  border-bottom:1px solid var(--border2);
+}
+.brand-tagline-top{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--muted);
+}
+.brand-contact-top{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--muted);display:flex;gap:2rem;
+}
+.brand-contact-top a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.brand-contact-top a:hover{color:var(--gold);}
+
+.brand-main{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.8rem 4rem;
+}
+
+/* LOGO MARK */
+.logo-wrap{display:flex;align-items:center;gap:1.2rem;text-decoration:none;}
+.logo-svg-box{width:52px;height:52px;flex-shrink:0;}
+.logo-text-group{display:flex;flex-direction:column;gap:0;}
+.logo-brand-name{
+  font-family:'Cinzel',serif;
+  font-size:1.8rem;font-weight:900;
+  letter-spacing:0.18em;
+  background:linear-gradient(135deg,var(--gold2) 0%,var(--gold) 50%,var(--gold3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.logo-full-name{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--muted);margin-top:0.15rem;
+}
+
+/* NAV */
+.brand-nav{display:flex;gap:2.2rem;list-style:none;align-items:center;}
+.brand-nav a{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.2s;
+}
+.brand-nav a:hover{color:var(--gold);}
+.brand-nav .nav-cta{
+  border:1px solid var(--gold);color:var(--gold);
+  padding:0.45rem 1.2rem;
+  transition:all 0.25s;
+}
+.brand-nav .nav-cta:hover{background:var(--gold);color:var(--void);}
+
+/* FAITH VERSE STRIP */
+.faith-strip{
+  background:linear-gradient(90deg,transparent,rgba(212,169,66,0.06),transparent);
+  border-top:1px solid var(--border2);
+  padding:0.4rem 4rem;
+  display:flex;align-items:center;justify-content:center;gap:1.2rem;
+  overflow:hidden;
+}
+.faith-strip p{
+  font-family:'Crimson Pro',serif;
+  font-style:italic;font-size:0.78rem;
+  color:rgba(212,169,66,0.55);letter-spacing:0.05em;
+  white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
+@keyframes marquee{
+  from{transform:translateX(60vw);}
+  to{transform:translateX(-120%);}
+}
+.faith-strip .cross-sep{color:rgba(212,169,66,0.3);font-size:0.6rem;}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:12rem 4rem 6rem;
+  position:relative;overflow:hidden;
+}
+.hero-orb{
+  position:absolute;
+  border-radius:50%;pointer-events:none;
+}
+.hero-orb-1{
+  width:600px;height:600px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(212,169,66,0.06) 0%,transparent 70%);
+}
+.hero-orb-2{
+  width:900px;height:900px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(26,58,107,0.12) 0%,transparent 65%);
+}
+.hero-grid-lines{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(212,169,66,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,169,66,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
+.hero-eyebrow{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  animation:fadeUp 0.8s ease 0.2s both;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--gold);opacity:0.5;}
+.hero-big-name{
+  font-family:'Cinzel',serif;
+  font-size:clamp(3.5rem,8vw,8rem);
+  font-weight:900;letter-spacing:0.12em;line-height:1;
+  background:linear-gradient(180deg,var(--gold2) 0%,var(--gold) 60%,var(--gold3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:0.3rem;
+  animation:fadeUp 0.8s ease 0.35s both;
+}
+.hero-sub-name{
+  font-family:'Cinzel',serif;
+  font-size:clamp(0.85rem,1.5vw,1.1rem);
+  font-weight:400;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.4rem;
+  animation:fadeUp 0.8s ease 0.5s both;
+}
+.hero-divider{
+  width:140px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 2.4rem;
+  animation:fadeUp 0.8s ease 0.6s both;
+}
+.hero-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1rem,2vw,1.5rem);
+  font-weight:400;letter-spacing:0.2em;
+  color:rgba(247,242,232,0.85);
+  margin-bottom:1.4rem;
+  animation:fadeUp 0.8s ease 0.65s both;
+}
+.hero-desc{
+  font-size:1.15rem;font-style:italic;
+  color:rgba(247,242,232,0.72);
+  max-width:520px;margin:0 auto 3rem;
+  line-height:1.8;
+  animation:fadeUp 0.8s ease 0.75s both;
+}
+.hero-btns{
+  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 0.8s ease 0.9s both;
+}
+.btn-gold{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:var(--void);border:none;
+  padding:1rem 2.4rem;text-decoration:none;
+  transition:all 0.25s;cursor:none;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,169,66,0.3);}
+.btn-ghost{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;letter-spacing:0.18em;text-transform:uppercase;
+  border:1px solid rgba(212,169,66,0.4);color:var(--gold);
+  padding:1rem 2.4rem;text-decoration:none;
+  transition:all 0.25s;cursor:none;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(212,169,66,0.07);transform:translateY(-3px);}
+.hero-stats{
+  display:flex;gap:4rem;justify-content:center;margin-top:5rem;
+  padding-top:3rem;border-top:1px solid var(--border2);
+  animation:fadeUp 0.8s ease 1.05s both;
+}
+.h-stat-num{
+  font-family:'Cinzel',serif;
+  font-size:2.4rem;font-weight:700;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.h-stat-lbl{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);margin-top:0.3rem;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* SECTION BASE */
+section{position:relative;z-index:1;}
+.section-wrap{max-width:1200px;margin:0 auto;padding:7rem 4rem;}
+.eyebrow{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:0.8rem;
+  margin-bottom:0.8rem;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.sec-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:700;letter-spacing:0.04em;line-height:1.1;
+  color:var(--ivory);margin-bottom:1rem;
+}
+.sec-sub{
+  font-family:'Crimson Pro',serif;
+  font-style:italic;font-size:1.05rem;
+  color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:3.5rem;
+}
+
+/* GOLD LINE */
+.gold-line{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,169,66,0.3),transparent);
+}
+
+/* FAITH BANNER */
+.faith-banner{
+  background:linear-gradient(135deg,rgba(26,58,107,0.15),rgba(212,169,66,0.06));
+  border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);
+  padding:3.5rem 4rem;
+  display:flex;align-items:center;justify-content:center;gap:3rem;
+  position:relative;overflow:hidden;
+}
+.faith-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(212,169,66,0.04),transparent);
+}
+.faith-cross-large{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.faith-verse{text-align:center;position:relative;z-index:1;}
+.faith-verse blockquote{
+  font-family:'Crimson Pro',serif;
+  font-size:1.35rem;font-style:italic;
+  color:rgba(247,242,232,0.9);
+  line-height:1.7;margin-bottom:0.8rem;
+}
+.faith-verse cite{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* ABOUT */
+#about{background:var(--deep);}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{
+  font-size:1.05rem;color:rgba(247,242,232,0.85);
+  line-height:1.85;margin-bottom:1.2rem;
+}
+.about-text strong{color:var(--ivory);font-weight:600;}
+.about-text em{color:var(--gold);font-style:italic;}
+.skills-block{display:flex;flex-direction:column;gap:1rem;}
+.skill-row{
+  border:1px solid var(--border2);padding:1.4rem 1.6rem;
+  background:var(--card);
+  transition:border-color 0.25s,transform 0.25s;
+}
+.skill-row:hover{border-color:rgba(212,169,66,0.4);transform:translateX(4px);}
+.sk-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:0.7rem;
+}
+.sk-name{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);
+}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.sk-tag{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.7rem;letter-spacing:0.08em;
+  color:rgba(247,242,232,0.85);
+  background:rgba(212,169,66,0.07);
+  border:1px solid rgba(212,169,66,0.15);
+  padding:0.2rem 0.6rem;
+}
+
+/* PROJECTS */
+#projects{background:var(--void);}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border2);}
+.proj-card{
+  background:var(--deep);padding:3rem 2.8rem;
+  text-decoration:none;display:block;position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.proj-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(212,169,66,0.04),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.proj-card:hover{background:#0e1018;}
+.proj-card:hover::after{opacity:1;}
+.proj-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform 0.4s ease;
+}
+.proj-card:hover::before{transform:scaleX(1);}
+.proj-num{
+  font-family:'Cinzel',serif;
+  font-size:5rem;font-weight:900;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(212,169,66,0.1);
+  position:absolute;top:1rem;right:1.5rem;line-height:1;
+  transition:-webkit-text-stroke 0.3s;
+}
+.proj-card:hover .proj-num{-webkit-text-stroke-color:rgba(212,169,66,0.22);}
+.proj-icon{
+  width:46px;height:46px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:1.6rem;
+  color:var(--gold);position:relative;z-index:1;
+}
+.proj-name{
+  font-family:'Cinzel',serif;
+  font-size:1.25rem;font-weight:600;
+  color:var(--ivory);margin-bottom:0.6rem;line-height:1.3;
+  position:relative;z-index:1;
+}
+.proj-desc{
+  font-size:0.95rem;color:rgba(247,242,232,0.72);
+  line-height:1.75;margin-bottom:1.6rem;
+  position:relative;z-index:1;
+}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.6rem;position:relative;z-index:1;}
+.proj-tag{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(212,169,66,0.25);
+  padding:0.2rem 0.6rem;
+}
+.proj-go{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:0.5rem;
+  position:relative;z-index:1;transition:gap 0.2s;
+}
+.proj-card:hover .proj-go{gap:1rem;}
+
+/* EXPERIENCE */
+#experience{background:var(--surface);}
+.exp-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{
+  border-left:1px solid var(--border2);
+  padding:0 0 3rem 2.4rem;position:relative;
+}
+.exp-item:last-child{padding-bottom:0;}
+.exp-dot{
+  position:absolute;left:-5px;top:0.3rem;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 4px rgba(212,169,66,0.12),0 0 16px rgba(212,169,66,0.2);
+}
+.exp-period{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.4rem;
+}
+.exp-role{
+  font-family:'Cinzel',serif;
+  font-size:1.3rem;font-weight:600;
+  color:var(--ivory);margin-bottom:0.2rem;
+}
+.exp-co{font-size:0.88rem;color:var(--muted);margin-bottom:1rem;}
+.exp-pts{list-style:none;}
+.exp-pts li{
+  font-size:0.92rem;color:rgba(247,242,232,0.72);
+  line-height:1.7;padding:0.2rem 0 0.2rem 1.2rem;position:relative;
+}
+.exp-pts li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:0.65rem;top:0.35rem;}
+
+/* STRENGTHS */
+#strengths{background:var(--deep);}
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.str-card{
+  border:1px solid var(--border2);
+  padding:2.4rem 1.8rem;
+  background:var(--card);position:relative;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+}
+.str-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  border-color:rgba(212,169,66,0.35);
+}
+.str-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.str-card:hover::before{transform:scaleX(1);}
+.str-icon{font-size:1.6rem;margin-bottom:1.2rem;display:block;}
+.str-title{
+  font-family:'Cinzel',serif;
+  font-size:1rem;font-weight:600;color:var(--ivory);
+  margin-bottom:0.6rem;
+}
+.str-desc{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+
+/* CONTACT */
+#contact{background:var(--void);}
+.contact-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:start;}
+.contact-big{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2.2rem,4vw,4rem);font-weight:700;
+  line-height:1.1;letter-spacing:0.03em;
+  color:var(--ivory);margin-bottom:1.4rem;
+}
+.contact-big em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.contact-intro{font-size:1rem;font-style:italic;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;}
+.c-list{list-style:none;display:flex;flex-direction:column;gap:1.2rem;}
+.c-list li{display:flex;align-items:center;gap:1rem;}
+.c-icon{
+  width:44px;height:44px;flex-shrink:0;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1rem;
+}
+.c-lbl{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:0.1rem;
+}
+.c-val{color:var(--ivory);font-size:0.95rem;text-decoration:none;transition:color 0.2s;}
+a.c-val:hover{color:var(--gold);}
+.avail-pill{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  border:1px solid rgba(212,169,66,0.3);
+  padding:0.65rem 1.3rem;margin-bottom:2.5rem;
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);
+}
+.avail-dot{
+  width:7px;height:7px;border-radius:50%;background:#4fa36f;
+  animation:pulse-g 2s ease-in-out infinite;
+}
+@keyframes pulse-g{
+  0%,100%{box-shadow:0 0 0 0 rgba(79,163,111,0.5);}
+  50%{box-shadow:0 0 0 6px rgba(79,163,111,0);}
+}
+.social-stack{display:flex;flex-direction:column;gap:0.8rem;}
+.soc-link{
+  display:flex;align-items:center;gap:0.9rem;
+  color:rgba(247,242,232,0.72);text-decoration:none;
+  border:1px solid rgba(212,169,66,0.08);
+  padding:0.9rem 1.3rem;font-size:0.9rem;
+  transition:all 0.25s;
+}
+.soc-link:hover{
+  color:var(--ivory);
+  border-color:rgba(212,169,66,0.35);
+  background:rgba(212,169,66,0.05);
+  padding-left:1.8rem;
+}
+.soc-link .arr{margin-left:auto;color:var(--gold);font-size:0.75rem;}
+
+/* FOOTER */
+footer{
+  background:var(--void);
+  border-top:1px solid var(--border2);
+  padding:2.2rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+footer p{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+.footer-brand{
+  display:flex;align-items:center;gap:0.6rem;
+  text-decoration:none;
+}
+.footer-brand span{
+  font-family:'Cinzel',serif;
+  font-size:1rem;font-weight:700;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  opacity:0.5;
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .brand-top{display:none;}
+  .brand-main{padding:0.9rem 1.5rem;}
+  .faith-strip{display:none;}
+  .brand-nav{display:none;}
+  .hero{padding:9rem 2rem 4rem;}
+  .section-wrap{padding:5rem 2rem;}
+  .about-grid,.exp-wrap,.contact-layout{grid-template-columns:1fr;gap:3rem;}
+  .projects-grid{grid-template-columns:1fr;}
+  .str-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-wrap:wrap;gap:2rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor">
+  <div class="c-ring" id="cring"></div>
+  <div class="c-dot" id="cdot"></div>
+</div>
+
+<!-- ══════════════════ BRAND HEADER ══════════════════ -->
+<header class="brand-header">
+  <!-- Top utility bar -->
+  <div class="brand-top">
+    <span class="brand-tagline-top">Faith · Technology · Excellence</span>
+    <div class="brand-contact-top">
+      <a href="tel:918072534325">+91 80725 34325</a>
+      <a href="mailto:jeswingabrial@gmail.com">jeswingabrial@gmail.com</a>
+      <span>India</span>
+    </div>
+  </div>
+
+  <!-- Main brand row -->
+  <div class="brand-main">
+    <a href="#" class="logo-wrap">
+      <!-- FAITH-BASED LOGO SVG -->
+      <div class="logo-svg-box">
+        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52">
+          <!-- Outer hexagon ring -->
+          <polygon points="26,2 49,14.5 49,37.5 26,50 3,37.5 3,14.5"
+            fill="none" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.6"/>
+          <!-- Inner hexagon -->
+          <polygon points="26,8 44,18.5 44,33.5 26,44 8,33.5 8,18.5"
+            fill="none" stroke="url(#goldGrad)" stroke-width="0.6" opacity="0.3"/>
+          <!-- Cross — vertical bar -->
+          <rect x="24.2" y="13" width="3.6" height="26" rx="0.4" fill="url(#goldGrad)"/>
+          <!-- Cross — horizontal bar -->
+          <rect x="16" y="22" width="20" height="3.6" rx="0.4" fill="url(#goldGrad)"/>
+          <!-- Star/spark top -->
+          <circle cx="26" cy="13" r="2.2" fill="url(#goldGrad)" opacity="0.9"/>
+          <!-- Corner accent dots -->
+          <circle cx="26" cy="3.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <circle cx="47" cy="15.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <circle cx="47" cy="36.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <circle cx="26" cy="48.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <circle cx="5" cy="36.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <circle cx="5" cy="15.5" r="1" fill="url(#goldGrad)" opacity="0.5"/>
+          <!-- Light rays from cross centre -->
+          <line x1="26" y1="26" x2="26" y2="8" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <line x1="26" y1="26" x2="40" y2="18" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <line x1="26" y1="26" x2="40" y2="34" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <line x1="26" y1="26" x2="26" y2="44" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <line x1="26" y1="26" x2="12" y2="34" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <line x1="26" y1="26" x2="12" y2="18" stroke="url(#goldGrad)" stroke-width="0.4" opacity="0.2"/>
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f0c96a"/>
+              <stop offset="50%" stop-color="#d4a942"/>
+              <stop offset="100%" stop-color="#8a6520"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="logo-text-group">
+        <div class="logo-brand-name">JES</div>
+        <div class="logo-full-name">jes tech</div>
+      </div>
+    </a>
+
+    <nav>
+      <ul class="brand-nav">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#strengths">Skills</a></li>
+        <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Faith verse scroll strip -->
+  <div class="faith-strip">
+    <p>"For I know the plans I have for you, declares the Lord — plans to prosper you and not to harm you." — Jeremiah 29:11 &nbsp; ✦ &nbsp; "Commit to the LORD whatever you do, and he will establish your plans." — Proverbs 16:3 &nbsp; ✦ &nbsp; "I can do all things through Christ who strengthens me." — Philippians 4:13</p>
+  </div>
+</header>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-eyebrow">Full-Stack Developer</div>
+
+  <h1 class="hero-big-name">JESWIN G</h1>
+  <div class="hero-sub-name">jes tech &nbsp;·&nbsp; Est. 2023</div>
+  <div class="hero-divider"></div>
+  <div class="hero-title">Faith-Driven Engineering. Precision-Built Technology.</div>
+  <p class="hero-desc">
+    Crafting intelligent web systems  — where deep engineering meets elegant software, grounded in faith and purpose.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-gold">Explore My Work →</a>
+    <a href="#contact" class="btn-ghost">Let's Connect</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="h-stat-num">4+</div>
+      <div class="h-stat-lbl">Live Projects</div>
+    </div>
+    <div>
+      <div class="h-stat-num">700+</div>
+      <div class="h-stat-lbl">Users Served</div>
+    </div>
+    <div>
+      <div class="h-stat-num">2</div>
+      <div class="h-stat-lbl">Specialisations</div>
+    </div>
+    <div>
+      <div class="h-stat-num">∞</div>
+      <div class="h-stat-lbl">Driven by Faith</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- FAITH BANNER -->
+<div class="faith-banner">
+  <div class="faith-cross-large">
+    <svg width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="26" y="4" width="8" height="64" rx="1" fill="url(#fb1)" opacity="0.85"/>
+      <rect x="8" y="20" width="44" height="8" rx="1" fill="url(#fb1)" opacity="0.85"/>
+      <circle cx="30" cy="4" r="4" fill="url(#fb1)" opacity="0.7"/>
+      <defs>
+        <linearGradient id="fb1" x1="0" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f0c96a"/><stop offset="1" stop-color="#8a6520"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="faith-verse">
+    <blockquote>"Commit to the LORD whatever you do, and he will establish your plans."</blockquote>
+    <cite>Proverbs 16:3 &nbsp;·&nbsp; The foundation of JES</cite>
+  </div>
+</div>
+
+<div class="gold-line"></div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="eyebrow reveal">About Jeswin</div>
+        <h2 class="sec-title reveal d1">Engineering &amp; Faith<br><em style="font-style:italic;background:linear-gradient(135deg,#f0c96a,#d4a942);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">in one calling.</em></h2>
+        <p class="reveal d2">
+          I'm <strong>Jeswin G</strong>, an <strong>Electronics &amp; Communication Engineering student</strong> at Jayaraj Annapackiam CSI College of Engineering, Nazareth — building real-world web applications and embedded IoT systems with purpose and precision.
+        </p>
+        <p class="reveal d3">
+          From <em>ESP32-powered monitoring systems</em> to Firebase-backed web platforms serving hundreds of users, I deliver solutions that are technically excellent and genuinely useful — grounded in the belief that great work is an act of service.
+        </p>
+        <p class="reveal d3">
+          Currently seeking <strong>internship or placement opportunities</strong> in web development, embedded systems, or IoT — remote or on-site, India.
+        </p>
+      </div>
+      <div>
+        <div class="eyebrow reveal" style="margin-bottom:1.4rem;">Technical Stack</div>
+        <div class="skills-block">
+          <div class="skill-row reveal d1">
+            <div class="sk-head"><span class="sk-name">Frontend</span></div>
+            <div class="sk-tags">
+              <span class="sk-tag">html</span><span class="sk-tag">css</span><span class="sk-tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-row reveal d2">
+            <div class="sk-head"><span class="sk-name">Backend &amp; Database</span></div>
+            <div class="sk-tags"><span class="sk-tag">Google Firebase</span><span class="sk-tag">Realtime DB</span></div>
+          </div>
+          <div class="skill-row reveal d3">
+            <div class="sk-head"><span class="sk-name">BASIC IDEA ABOUT IoT &amp; Embedded</span></div>
+            <div class="sk-tags">
+              <span class="sk-tag">ESP32</span><span class="sk-tag">Embedded C</span><span class="sk-tag">ThingSpeak</span>
+            </div>
+          </div>
+          <div class="skill-row reveal d4">
+            <div class="sk-head"><span class="sk-name">Tools &amp; Deployment</span></div>
+            <div class="sk-tags">
+              <span class="sk-tag">GitHub</span><span class="sk-tag">Vercel</span><span class="sk-tag">VS Code</span><span class="sk-tag">Figma</span><span class="sk-tag">Canva</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ══════════════════ PROJECTS ══════════════════ -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="eyebrow reveal">Live Deployments</div>
+    <h2 class="sec-title reveal d1">Projects Shipped<br>&amp; Serving Real Users.</h2>
+    <p class="sec-sub reveal d2">Four live applications built, designed and deployed entirely by Jeswin — serving churches, colleges, and institutions.</p>
+  </div>
+  <div class="projects-grid reveal d2">
+
+    <a class="proj-card" href="https://lecturerattendancesite-vert.vercel.app/" target="_blank">
+      <div class="proj-num">01</div>
+      <div class="proj-icon">🎵</div>
+      <div class="proj-name">Music Attendance System</div>
+      <div class="proj-desc">Comprehensive attendance management for 100 students across 7 music classes. Real-time search, date filtering, multi-status marking (100% / 50% / Absent), and Excel export for academic records.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">HTML/CSS/JS</span>
+        <span class="proj-tag">Firebase</span>
+        <span class="proj-tag">Excel Export</span>
+        <span class="proj-tag">100 Students</span>
+      </div>
+      <div class="proj-go">Visit Live Site →</div>
+    </a>
+
+    <a class="proj-card" href="https://paytracker-neon.vercel.app/" target="_blank">
+      <div class="proj-num">02</div>
+      <div class="proj-icon">💳</div>
+      <div class="proj-name">Music Class Payment Tracker</div>
+      <div class="proj-desc">Full payment dashboard for 7 batches and 700 students at ₹500/month. Real-time paid/unpaid tracking, bulk operations, payment history, and individual student management.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Real-Time DB</span>
+        <span class="proj-tag">700 Students</span>
+        <span class="proj-tag">Batch Management</span>
+      </div>
+      <div class="proj-go">Visit Live Site →</div>
+    </a>
+
+    <a class="proj-card" href="https://choirattendance-six.vercel.app/" target="_blank">
+      <div class="proj-num">03</div>
+      <div class="proj-icon">✝</div>
+      <div class="proj-name">Holy Trinity Church — Choir Attendance</div>
+      <div class="proj-desc">Dedicated choir attendance management for Holy Trinity Church, Vellalanvilai. Present / OD / Absent tracking, date-wise search, Excel download, and a custom light/dark theme toggle.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Church System</span>
+        <span class="proj-tag">Dark Mode</span>
+        <span class="proj-tag">Excel Export</span>
+      </div>
+      <div class="proj-go">Visit Live Site →</div>
+    </a>
+
+    <a class="proj-card" href="https://jacsice-placement-amp-test.vercel.app/" target="_blank">
+      <div class="proj-num">04</div>
+      <div class="proj-icon">🎓</div>
+      <div class="proj-name">JACSICE Placement Aptitude Portal</div>
+      <div class="proj-desc">Multi-role college placement test platform with student, trainer, and admin logins. 25-minute timed test engine, trainer question management, and a full results dashboard — live at the college.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Multi-Role Auth</span>
+        <span class="proj-tag">Timed Engine</span>
+        <span class="proj-tag">Admin Panel</span>
+        <span class="proj-tag">Firebase</span>
+      </div>
+      <div class="proj-go">Visit Live Site →</div>
+    </a>
+
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ══════════════════ EXPERIENCE ══════════════════ -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="exp-wrap">
+      <div>
+        <div class="eyebrow reveal">Background</div>
+        <h2 class="sec-title reveal d1">Where Faith Met<br>Engineering.</h2>
+        <p class="sec-sub reveal d2">Real-world work experience from internship to institution-grade product delivery.</p>
+      </div>
+      <div class="exp-list reveal d2">
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-period">Jan 2023 – Feb 2023 &nbsp;·&nbsp; Chennai</div>
+          <div class="exp-role">Embedded Systems Intern</div>
+          <div class="exp-co">Pantech Solutions Pvt. Ltd.</div>
+          <ul class="exp-pts">
+            <li>Built IoT monitoring systems using ESP32 microcontroller in live product environments.</li>
+            <li>Developed embedded firmware for real-time sensor data collection and cloud transmission.</li>
+            <li>Integrated ThingSpeak for live data visualization dashboards.</li>
+            <li>Collaborated with teams on hardware–software integration and systematic debugging.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div class="exp-period">Aug 2023 – May 2027 (Expected) &nbsp;·&nbsp; Nazareth</div>
+          <div class="exp-role">B.E. Electronics &amp; Communication Engineering</div>
+          <div class="exp-co">Jayaraj Annapackiam CSI College of Engineering</div>
+          <ul class="exp-pts">
+            <li>Pursuing B.E. with focus on embedded systems, IoT, and web development.</li>
+            <li>Independently delivered 4+ deployed client applications during academic years.</li>
+            <li>Student Profile Management Web App — full-stack record management system (Key Achievement).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ══════════════════ STRENGTHS ══════════════════ -->
+<section id="strengths">
+  <div class="section-wrap">
+    <div class="eyebrow reveal">Core Strengths</div>
+    <h2 class="sec-title reveal d1">What JES Brings<br>to Every Engagement.</h2>
+    <p class="sec-sub reveal d2">A rare combination of hardware depth, software polish, and faith-fuelled determination.</p>
+    <div class="str-grid">
+      <div class="str-card reveal d1">
+        <span class="str-icon">🌐</span>
+        <div class="str-title">Full-Stack Web Development</div>
+        <div class="str-desc">End-to-end delivery from UI design to Firebase backend — shipping live, usable products, not just prototypes.</div>
+      </div>
+      <div class="str-card reveal d2">
+        <span class="str-icon">🔌</span>
+        <div class="str-title">BASIC Embedded Systems &amp; IoT</div>
+        <div class="str-desc">ESP32 firmware, real-time data pipelines, ThingSpeak cloud integration, and full hardware-software system.</div>
+      </div>
+      <div class="str-card reveal d3">
+        <span class="str-icon">🐛</span>
+        <div class="str-title">Problem-Solving &amp; Debugging</div>
+        <div class="str-desc">Systematic debugging across the full stack — from C firmware to JavaScript UI — with a code-optimization mindset.</div>
+      </div>
+      <div class="str-card reveal d1">
+        <span class="str-icon">📝</span>
+        <div class="str-title">Communication &amp; Documentation</div>
+        <div class="str-desc">Technical writing, UI/UX design docs, and clear client-facing communication in both English and Tamil.</div>
+      </div>
+      <div class="str-card reveal d2">
+        <span class="str-icon">⚡</span>
+        <div class="str-title">Rapid Adaptability</div>
+        <div class="str-desc">Fast learner across multiple tech stacks — comfortable picking up new tools, frameworks, and domains quickly.</div>
+      </div>
+      <div class="str-card reveal d3">
+        <span class="str-icon">🙏</span>
+        <div class="str-title">Faith &amp; Purpose</div>
+        <div class="str-desc">Work grounded in conviction. Every project is an act of service — delivered with integrity, care, and gratitude to God.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="contact-layout">
+      <div>
+        <div class="eyebrow reveal">Get In Touch</div>
+        <h2 class="contact-big reveal d1">Let's build something<br><em>remarkable</em><br>together.</h2>
+        <p class="contact-intro reveal d2">Available for internships, freelance projects, and full-time placement opportunities in web development, embedded systems, or IoT. Based in India — open to remote and on-site work.</p>
+        <ul class="c-list reveal d3">
+          <li>
+            <div class="c-icon">📞</div>
+            <div><span class="c-lbl">Phone</span><a href="tel:918072534325" class="c-val">+91 80725 34325</a></div>
+          </li>
+          <li>
+            <div class="c-icon">✉️</div>
+            <div><span class="c-lbl">Email</span><a href="mailto:jeswingabrial@gmail.com" class="c-val">jeswingabrial@gmail.com</a></div>
+          </li>
+          <li>
+            <div class="c-icon">📍</div>
+            <div><span class="c-lbl">Location</span><span class="c-val">India</span></div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal d2">
+        <div class="avail-pill"><div class="avail-dot"></div>Available for Opportunities</div>
+        <div class="social-stack">
+          <a href="https://www.linkedin.com/in/jeswin-g-796043327" target="_blank" class="soc-link">
+            🔗 &nbsp; LinkedIn Profile <span class="arr">→</span>
+          </a>
+          <a href="https://lecturerattendancesite-vert.vercel.app/" target="_blank" class="soc-link">
+            🎵 &nbsp; Music Attendance System <span class="arr">→</span>
+          </a>
+          <a href="https://paytracker-neon.vercel.app/" target="_blank" class="soc-link">
+            💳 &nbsp; Payment Tracker App <span class="arr">→</span>
+          </a>
+          <a href="https://choirattendance-six.vercel.app/" target="_blank" class="soc-link">
+            ✝ &nbsp; Church Choir Attendance <span class="arr">→</span>
+          </a>
+          <a href="https://jacsice-placement-amp-test.vercel.app/" target="_blank" class="soc-link">
+            🎓 &nbsp; Placement Aptitude Portal <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-brand">
+    <svg width="22" height="22" viewBox="0 0 52 52" fill="none">
+      <polygon points="26,2 49,14.5 49,37.5 26,50 3,37.5 3,14.5" fill="none" stroke="#d4a942" stroke-width="1.5" opacity="0.4"/>
+      <rect x="24.2" y="13" width="3.6" height="26" rx="0.4" fill="#d4a942" opacity="0.5"/>
+      <rect x="16" y="22" width="20" height="3.6" rx="0.4" fill="#d4a942" opacity="0.5"/>
+    </svg>
+    <span>JES</span>
+  </a>
+  <p>© 2026 jes tech &nbsp;·&nbsp; To God Be The Glory</p>
+  <p>Electronics &amp; Communication Engineering &nbsp;·&nbsp; India</p>
+</footer>
+
+<script>
+// Cursor
+const cursor=document.getElementById('cursor');
+const dot=document.getElementById('cdot');
+const ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function anim(){
+  rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15;
+  dot.style.cssText=`left:${mx}px;top:${my}px;`;
+  ring.style.cssText=`left:${rx}px;top:${ry}px;`;
+  requestAnimationFrame(anim);
+})();
+
+// Reveal on scroll
+const els=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+els.forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
